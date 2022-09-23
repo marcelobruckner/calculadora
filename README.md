@@ -1,5 +1,3 @@
-PT-BR
-
 # API de calculadora com operações básicas
 
 API REST para uma aplicação ao estilo calculadora com suas operações básicas. Adição, subtração, divisão e multiplicação
@@ -18,9 +16,7 @@ API REST para uma aplicação ao estilo calculadora com suas operações básica
 - Tratamento de Exceptions de api
 - Spring Validations
 
----
-
-EN-US
+<br><br><br><br>
 
 # API of calculator with basics operations
 
