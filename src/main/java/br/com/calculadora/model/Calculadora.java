@@ -22,6 +22,14 @@ public class Calculadora {
   private Operacoes operando;
   private long resultado;
 
+  public Calculadora(Long operador1, Long operador2) {
+    this.operador1 = operador1;
+    this.operador2 = operador2;
+  }
+
+  public Calculadora() {
+  }
+
   public Calculadora calcular() throws CalculadoraException {
 
     if (this.operando == null) {
