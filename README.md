@@ -15,6 +15,7 @@ API REST para uma aplicação ao estilo calculadora com suas operações básica
 - Lombok
 - Tratamento de Exceptions de api
 - Spring Validations
+- Spring Security - Basic Authentication
 
 <br><br><br><br>
 
@@ -35,3 +36,4 @@ REST API for a calculator-style application with its basic operations. Addition,
 - Lombok
 - Tratamento de Exceptions de api
 - Spring Validations
+- Spring Security - Basic Authentication
