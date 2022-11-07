@@ -1,44 +1,46 @@
 package br.com.calculadora.api.controller;
 
-import javax.validation.Valid;
-
+import br.com.calculadora.model.Calculadora;
+import br.com.calculadora.service.CalculadoraService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.calculadora.model.Calculadora;
-import br.com.calculadora.service.CalculadoraServiceImpl;
-
 @RestController
-@RequestMapping("calculadora/api")
+@RequestMapping("/calculadora/api")
 public class CalculadoraController {
+    @Autowired
+    CalculadoraService calculadoraService;
 
-  private final CalculadoraServiceImpl calculadoraService;
+    @GetMapping("/somar/{operador1}/{operador2}")
+    public Calculadora somar(@PathVariable("operador1") Long operador1,
+            @PathVariable("operador2") Long operador2) {
 
-  public CalculadoraController(CalculadoraServiceImpl calculadoraService) {
-    this.calculadoraService = calculadoraService;
-  }
+        Calculadora calculadora = new Calculadora(operador1, operador2);
+        return calculadoraService.calcularSoma(calculadora);
+    }
 
-  @GetMapping("/somar")
-  public Calculadora somar(@RequestBody @Valid Calculadora calculadora) {
-    System.out.println("CalculadoraController >> somar: " + calculadora);
-    return calculadoraService.calcularSoma(calculadora);
-  }
+    @GetMapping("/subtrair/{operador1}/{operador2}")
+    public Calculadora subtrair(@PathVariable("operador1") Long operador1,
+            @PathVariable("operador2") Long operador2) {
+        Calculadora calculadora = new Calculadora(operador1, operador2);
+        return calculadoraService.calcularSubtracao(calculadora);
+    }
 
-  @GetMapping("/subtrair")
-  public Calculadora subtrair(@RequestBody Calculadora calculadora) {
-    return calculadoraService.calcularSubtracao(calculadora);
-  }
+    @GetMapping("/multiplicar/{operador1}/{operador2}")
+    public Calculadora multiplicar(@PathVariable("operador1") Long operador1,
+            @PathVariable("operador2") Long operador2) {
+        Calculadora calculadora = new Calculadora(operador1, operador2);
+        return calculadoraService.calcularMultiplicacao(calculadora);
+    }
 
-  @GetMapping("/multiplicar")
-  public Calculadora multiplicar(@RequestBody Calculadora calculadora) {
-    return calculadoraService.calcularMultiplicacao(calculadora);
-  }
-
-  @GetMapping("/dividir")
-  public Calculadora dividir(@RequestBody Calculadora calculadora) {
-    return calculadoraService.calcularDivisao(calculadora);
-  }
+    @GetMapping("/dividir/{operador1}/{operador2}")
+    public Calculadora dividir(@PathVariable("operador1") Long operador1,
+            @PathVariable("operador2") Long operador2) {
+        Calculadora calculadora = new Calculadora(operador1, operador2);
+        return calculadoraService.calcularDivisao(calculadora);
+    }
 
 }
