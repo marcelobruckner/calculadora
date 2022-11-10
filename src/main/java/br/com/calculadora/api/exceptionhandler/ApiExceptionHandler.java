@@ -36,7 +36,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
         String detail = ex.getMessage();
 
-        Problem problem = createProblemBuilder(status, problemType, detail).userMessage(MSG_GENERICA_USUARIO_FINAL).build();
+        Problem problem = createProblemBuilder(status, problemType, detail).userMessage(MSG_GENERICA_USUARIO_FINAL)
+                .build();
 
         return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
     }
@@ -44,17 +45,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DivisaoPorZeroException.class)
     public ResponseEntity<?> handleDivisaoPorZero(DivisaoPorZeroException ex, WebRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
-        ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
+        ProblemType problemType = ProblemType.DIVISAO_POR_ZERO;
         String detail = ex.getMessage();
 
-        Problem problem = createProblemBuilder(status, problemType, detail).userMessage(MSG_GENERICA_USUARIO_FINAL).build();
+        Problem problem = createProblemBuilder(status, problemType, detail).userMessage(ex.getMessage())
+                .build();
 
         return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
     }
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers,
-                                                                  HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+            HttpHeaders headers,
+            HttpStatus status, WebRequest request) {
 
         ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
         String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente";
@@ -82,7 +85,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
-                                                             HttpStatus status, WebRequest request) {
+            HttpStatus status, WebRequest request) {
 
         if (body == null) {
             // cairá aqui caso seja alguma exception do spring tratada por

@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum ProblemType {
 
   MENSAGEM_INCOMPREENSIVEL("/mensagem-incompreensivel", "Mensagem incompreensível"),
-  RECURSO_NAO_ENCONTRADO("/recurso-nao-encontrado", "Recurso não encontrado");
+  RECURSO_NAO_ENCONTRADO("/recurso-nao-encontrado", "Recurso não encontrado"),
+  DIVISAO_POR_ZERO("/divisao-por-zero", "Erro de divisão por zero");
 
   private String title;
   private String uri;
