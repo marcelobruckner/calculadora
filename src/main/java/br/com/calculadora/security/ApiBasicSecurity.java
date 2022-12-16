@@ -19,7 +19,9 @@ public class ApiBasicSecurity {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/**.html", "/v3/api-docs", "/webjars/**", "/configuration/**",
+                        "swagger-resources/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
